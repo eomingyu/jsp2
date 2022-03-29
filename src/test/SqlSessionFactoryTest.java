@@ -1,4 +1,4 @@
-package test.util;
+package test;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 

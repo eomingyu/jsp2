@@ -3,5 +3,38 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="test">
-
+	<!-- id 속성값은 식별자 : 보통 메소드 이름과 동일하게 합니다. 
+	sql 실행에 필요한 값들에 대해 자바클래스와 테이블의 컬럼을 매핑하여 처리합니다.
+	1) 값 대입할 ? 기호는 el 기호 #{}로 변경합니다. -> 실행할 때 대입되는 기호
+	2) 값 대입할 형식을 parameterType 속성에 설정합니다.(패키지명.클래스명 형식)
+	3) sql 실행 결과 매핑될 데이터 타입을 resultType 속성에 설정합니다. (패키지명.클래스명 형식)
+	-->
+	<!-- 파라미터 타입이 클래스일 때  #{ }는 프로퍼티 이름을 정확히 대소문자 구분하여 작성하세요. -->
+	<insert id="insert" parameterType="hrd.vo.Member">
+	INSERT INTO MEMBER_TBL_02
+	(custno,custname,phone,address,joindate,grade,city) 
+	VALUES (#{custNo}, #{custName}, #{phone}, #{address},sysdate, #{grade}, #{city})
+	</insert>
+	
+	<update id="update" parameterType="hrd.vo.Member">
+	update member_tbl_02 
+	set phone= #{phone},address= #{address},city= #{city} 
+	where custno= #{custNo}
+	</update>
+	
+<!-- select 실행 결과를 자동으로 Member 객체를 생성해서 매핑을 합니다. -->
+	<select id="selectOne" parameterType="int" resultType="hrd.vo.Member">
+	select * from member_tbl_02 where custno= #{custNo}
+	</select>
+<!-- select 실행결과가 여러 행이 되는 List 인 경우에는 <T>에 해당하는 제너릭 타입을 설정합니다. -->	
+	<select id="selectAll" resultType="hrd.vo.Member">
+	select * from member_tbl_02
+	</select>
+	<select id="searchName" parameterType="String" resultType="hrd.vo.Member">
+	select * from member_tbl_02 where custname= #{custName}
+	</select>
+	<select id="getNextSeq" resultType="int">
+	select member_seq.nextval from dual
+	</select>
+	
 </mapper>
