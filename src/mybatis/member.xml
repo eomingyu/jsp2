@@ -30,11 +30,38 @@
 	<select id="selectAll" resultType="hrd.vo.Member">
 	select * from member_tbl_02
 	</select>
+	<!-- 동적쿼리 검색 -->
+	<select id="search" parameterType="java.util.Map" resultType="hrd.vo.Member">
+	select * from member_tbl_02
+	<if test="column=='name'">
+		where custname like '%'||#{find}||'%'
+	</if>
+	<if test="column=='address'">
+		where address like '%'||#{find}||'%'
+	</if>
+	<if test="column=='grade'">
+		where grade=#{find}
+	</if>
+	<if test="column=='city'">
+		where city=#{find}
+	</if>
+	</select>
+	
+	<!-- 테스트 검색 -->
 	<select id="searchName" parameterType="String" resultType="hrd.vo.Member">
-	select * from member_tbl_02 where custname= #{custName}
+	select * from member_tbl_02 where custname like '%'||#{find}||'%'
 	</select>
 	<select id="getNextSeq" resultType="int">
 	select member_seq.nextval from dual
 	</select>
+	
+	<!-- 로그인 테스트 용으로 다른 테이블의 sql 실행합니다. -->
+	<select id="Login" parameterType="java.util.Map" resultType="test.vo.User">
+	select mem_idx,name,email from tbl_member
+	where email=#{email} and password=#{password}
+	
+	</select>	
+	
+	
 	
 </mapper>

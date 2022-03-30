@@ -9,4 +9,7 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  <session-config>				<!-- 세션 유효시간 설정 -->
+  	<session-timeout>3</session-timeout>
+  </session-config>
 </web-app>

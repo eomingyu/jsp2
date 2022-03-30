@@ -12,6 +12,7 @@
 <h4>자바 변수처럼 값을 저장하기</h4>
 <c:set var="age" value="10"/>
 age : ${age} <br> <!-- 일반적으로 el 출력은 c:out 태그로 합니다. -->
+<c:out value="age : ${age}"/>
 <hr>
 
 <!-- c:if 조건은 test 속성에 el로 작성합니다. -->
@@ -34,8 +35,8 @@ age : ${age} <br> <!-- 일반적으로 el 출력은 c:out 태그로 합니다. -
 <hr>
 <!-- 스크립트릿에서 for문을 작성하는 것 대신 사용 -->
 <c:forEach var="i" begin="1" end="10" varStatus="status" step="2">
-	<c:out value="${i }"/><br>				<!-- for 시작 값은 1, 맘지막 값은 10, 변수명은 var로 지정-->
-	<c:out value="${status.index }"/><br>	
+	<c:out value="${i }"/><br>				<!-- for 시작 값은 1, 마지막 값은 10, 변수명은 var로 지정-->
+	<c:out value="(${status.index })"/><br>	
 	<!-- 몇 번째 값인지를 나타내는 index 출력, varStatus는 for 동작의 상태를 참조할 변수명-->
 </c:forEach>
 
