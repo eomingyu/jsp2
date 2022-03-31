@@ -27,8 +27,18 @@
 	</c:if>
 	</div>
 	<script type="text/javascript">
-		if('${param.logout}'=='y')
-			alert('로그아웃 되었습니다.')
+		setTimeout(function(){
+			//파라미터 처리방법
+			if('${param.logout}'=='y')
+				alert('로그아웃 되었습니다.')
+			if('${param.login}'=='y')
+				alert('로그인 완료되었습니다.')
+			if('${param.login}'=='n')
+				alert('로그인 정보가 옳지 않습니다.')
+			//애트리뷰트 처리방법
+			//if(${not empty message})	//message 라는 이름 애트리뷰트가 null이나 길이가 0이 아니면 참
+			//	alert('${message}');
+		},100);
 	</script>
 </body>
 </html>
